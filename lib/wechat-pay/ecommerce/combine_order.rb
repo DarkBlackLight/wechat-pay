@@ -107,17 +107,17 @@ module WechatPay
       )
     end
 
-    class<<self
+    class << self
       private
 
       def combine_transactions_method_by_suffix(suffix, params)
         url = "/v3/combine-transactions/#{suffix}"
         method = 'POST'
 
-        params = params.merge({
-                                combine_mchid: WechatPay.mch_id,
-                                combine_appid: WechatPay.app_id
-                              })
+        params = {
+          combine_mchid: WechatPay.mch_id,
+          combine_appid: WechatPay.app_id
+        }.merge(params)
 
         payload_json = params.to_json
 
